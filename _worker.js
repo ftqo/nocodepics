@@ -8,16 +8,16 @@ export default {
 
 		if (userAgent.includes('Slack')) {
 			codeblock = `
-			\`\`\`\`\`\`
-			your code goes here
-			\`\`\`\`\`\``;
+\`\`\`\`\`\`
+your code goes here
+\`\`\`\`\`\``;
 		} else {
 			let path = rawPath.slice(1);
 			if (!languages.includes(path)) path = 'language';
 			codeblock = `
-			\`\`\`${path}
-			your code goes here
-			\`\`\``;
+\`\`\`${path}
+your code goes here
+\`\`\``;
 		}
 
 		return new HTMLRewriter().on('head', new MetaTagInserter(codeblock)).transform(await env.ASSETS.fetch(request));
