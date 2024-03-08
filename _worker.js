@@ -2,23 +2,23 @@ export default {
 	async fetch(request, env) {
 		const url = new URL(request.url);
 		const rawPath = url.pathname;
+		const userAgent = request.headers.get('User-Agent') || '';
 
 		let codeblock = '';
-		let path = rawPath.slice(1);
-		if (path !== 'slack' && !languages.includes(path)) path = 'language';
 
-		if (path === 'slack')
+		if (userAgent.includes('Slack')) {
 			codeblock = `
-\`\`\`\`\`\`
-your code goes here
-\`\`\`\`\`\`
-`;
-		else
+			\`\`\`\`\`\`
+			your code goes here
+			\`\`\`\`\`\``;
+		} else {
+			let path = rawPath.slice(1);
+			if (!languages.includes(path)) path = 'language';
 			codeblock = `
-\`\`\`${path}
-your code goes here
-\`\`\`
-`;
+			\`\`\`${path}
+			your code goes here
+			\`\`\``;
+		}
 
 		return new HTMLRewriter().on('head', new MetaTagInserter(codeblock)).transform(await env.ASSETS.fetch(request));
 	},
