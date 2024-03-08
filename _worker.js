@@ -1,14 +1,21 @@
 export default {
 	async fetch(request, env) {
 		const url = new URL(request.url);
-		const path = url.pathname;
+		const rawPath = url.pathname;
 
-		let prefix = path.slice(1);
-		if (prefix === 'slack') prefix = '';
-		else if (!languages.includes(prefix)) prefix = 'language';
+		let codeblock = '';
+		let path = rawPath.slice(1);
+		if (path !== 'slack' && !languages.includes(path)) path = 'language';
 
-		let codeblock = `
-\`\`\`${prefix}
+		if (path === 'slack')
+			codeblock = `
+\`\`\`\`\`\`
+your code goes here
+\`\`\`\`\`\`
+`;
+		else
+			codeblock = `
+\`\`\`${path}
 your code goes here
 \`\`\`
 `;
