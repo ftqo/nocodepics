@@ -1,4 +1,6 @@
 :root {
+	background: var(--bg);
+	color: var(--tx);
 	color-scheme: light dark;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -8,23 +10,18 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		background: #100f0f;
-		color: #cecdc3;
+		--bg: #100f0f;
+		--bg2: #1c1b1a;
+		--tx: #cecdc3;
 	}
 }
 
 @media (prefers-color-scheme: light) {
 	:root {
-		background: #fffcf0;
-		color: #100f0f;
+		--bg: #fffcf0;
+		--bg2: #f2f0e5;
+		--tx: #100f0f;
 	}
-}
-
-@font-face {
-	font-family: strawford;
-	src: url(/fonts/strawford-regular-webfont.woff2) format('woff2');
-	font-weight: 700;
-	font-style: normal;
 }
 
 body {
@@ -35,4 +32,76 @@ body {
 	line-height: 1.5;
 	width: 87.5%;
 	max-width: 940px;
+}
+
+p > code,
+li > code,
+dd > code,
+td > code {
+	background: var(--bg2);
+	word-wrap: break-word;
+	box-decoration-break: clone;
+	padding: 0.1rem 0.3rem 0.2rem;
+	border-radius: 0.2rem;
+}
+
+code {
+	font-family: 'berkeley mono', monospace;
+	font-size: inherit;
+}
+
+@font-face {
+	font-family: 'berkeley mono';
+	src: url(/fonts/BerkeleyMono-Regular.woff2) format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'strawford';
+	src: url(/fonts/strawford-thin-webfont.woff2) format('woff2');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'strawford';
+	src: url(/fonts/strawford-extralight-webfont.woff2) format('woff2');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'strawford';
+	src: url(/fonts/strawford-light-webfont.woff2) format('woff2');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'strawford';
+	src: url(/fonts/strawford-regular-webfont.woff2) format('woff2');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'strawford';
+	src: url(/fonts/strawford-medium-webfont.woff2) format('woff2');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: strawford;
+	src: url(/fonts/strawford-bold-webfont.woff2) format('woff2');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'strawford';
+	src: url(/fonts/strawford-black-webfont.woff2) format('woff2');
+	font-weight: 900;
+	font-style: normal;
 }
