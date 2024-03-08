@@ -1,0 +1,19 @@
+{
+  "name": "nocode.pics",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240222.0",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "lit": "^3.1.2"
+  }
+}
