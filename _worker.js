@@ -1,17 +1,24 @@
 export default {
 	async fetch(request, env) {
 		const url = new URL(request.url);
-		const path = url.pathname;
+		const rawPath = url.pathname;
+		const userAgent = request.headers.get('User-Agent') || '';
 
-		let prefix = path.slice(1);
-		if (prefix === 'slack') prefix = '';
-		else if (!languages.includes(prefix)) prefix = 'language';
+		let codeblock = '';
 
-		let codeblock = `
-\`\`\`${prefix}
+		if (userAgent.includes('Slack')) {
+			codeblock = `
+\`\`\`\`\`\`
 your code goes here
-\`\`\`
-`;
+\`\`\`\`\`\``;
+		} else {
+			let path = rawPath.slice(1);
+			if (!languages.includes(path)) path = 'language';
+			codeblock = `
+\`\`\`${path}
+your code goes here
+\`\`\``;
+		}
 
 		return new HTMLRewriter().on('head', new MetaTagInserter(codeblock)).transform(await env.ASSETS.fetch(request));
 	},
