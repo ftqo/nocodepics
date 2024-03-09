@@ -4,23 +4,27 @@ export default {
 		const rawPath = url.pathname;
 		const userAgent = request.headers.get('User-Agent') || '';
 
-		let codeblock = '';
-
-		if (userAgent.includes('Slack')) {
-			codeblock = `
+		let embedDesc = '';
+		if (userAgent.includes('Skype')) {
+			// Microsoft Teams actually
+			embedDesc = 'images are a bad way to share code.';
+		} else if (userAgent.includes('Slack')) {
+			// Slack can't do syntax highlighting or escape `, have to send in codeblock
+			embedDesc = `
 \`\`\`\`\`\`
 your code goes here
 \`\`\`\`\`\``;
 		} else {
+			// Discord mainly
 			let path = rawPath.slice(1);
 			if (!languages.includes(path)) path = 'language';
-			codeblock = `
+			embedDesc = `
 \`\`\`${path}
 your code goes here
 \`\`\``;
 		}
 
-		return new HTMLRewriter().on('head', new MetaTagInserter(codeblock)).transform(await env.ASSETS.fetch(request));
+		return new HTMLRewriter().on('head', new MetaTagInserter(embedDesc)).transform(await env.ASSETS.fetch(request));
 	},
 };
 
