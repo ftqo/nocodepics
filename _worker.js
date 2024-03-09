@@ -7,7 +7,7 @@ export default {
 		let embedDesc = '';
 		if (userAgent.includes('Skype')) {
 			// Microsoft Teams actually
-			embedDesc = 'images are a bad way to share code.';
+			embedDesc = 'this is how you should share code.';
 		} else if (userAgent.includes('Slack')) {
 			// Slack can't do syntax highlighting or escape `, have to send in codeblock
 			embedDesc = `
