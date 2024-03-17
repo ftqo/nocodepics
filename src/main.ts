@@ -5,8 +5,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 		<h1>just use a code block</h1>
 		<p>images are a bad way to share code.</p>
 		<ol>
-			<li>images are not accessible, especially to those with visual impairments</li>
-			<li>images can not be copied, pasted or edited</li>
+			<li>
+				<a href='https://accessibility.princeton.edu/how/design/images-text'>
+					images are not accessible, especially to those with visual impairments
+				</a>
+			</li>
+			<li>text in images can not be copied, pasted or edited</li>
 			<li>images can not be indexed and searched</li>
 		</ol>
 		<p>so what is the solution? code blocks!</p>
